@@ -1,1 +1,1 @@
-# testiranje aplikacije
+# Kako lep dan za testiranje aplikacije
