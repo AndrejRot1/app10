@@ -8,14 +8,19 @@ handlers:
 - url: /js
   static_dir: js
 
+- url: /
+  script: app10.app
+ 
 
 - url: /post
-  script:app10.app
-  login: required
-  auth_fail_action: unauthorized
-  
-  - url: /.*
   script: app10.app
+  login: required
+ # auth_fail_action: unauthorized
+
+- url: /retrive
+  script: app10.app
+  login: required
+
 
 libraries:
 - name: webapp2

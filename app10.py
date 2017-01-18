@@ -4,6 +4,10 @@ import urllib
 import datetime
 from google.appengine.api import users
 from webapp2_extras import jinja2
+import webapp2
+from google.appengine.ext.webapp.util import login_required
+
+
 
 
 # from google.appengine.api import users
@@ -65,6 +69,8 @@ class Index(Handler):
        
         
 class Post(Handler):
+
+          
 	def get(self):
 		self.render('post.html')
 
@@ -83,9 +89,6 @@ class Post(Handler):
 		form_input_key = form_input.put()
 
        
-
-        
-
 	
 class Retrive(Handler):
     def _render(self,template,**value):
