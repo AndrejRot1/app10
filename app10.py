@@ -52,6 +52,11 @@ class Index(Handler):
      def get(self):
         self.render('index.html')
 
+
+
+class Login(Handler):
+
+    def get(self):
         user = users.get_current_user()
         
         if user:
@@ -69,8 +74,7 @@ class Index(Handler):
        
         
 class Post(Handler):
-
-          
+         
 	def get(self):
 		self.render('post.html')
 
@@ -106,5 +110,6 @@ app = webapp2.WSGIApplication([
     ('/',Index),
     ('/post',Post),
     ('/retrive',Retrive),
+    ('/login',Login),
 ], debug=True)
 

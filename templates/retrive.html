@@ -16,6 +16,36 @@
 
 
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+
+
+<script src="js/moment-with-locales.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+
+ 
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+
+
+<script type="text/javascript">
+          $(function() { 
+        $('#datetimepicker2').datetimepicker({  
+
+          format: 'DD-MM-YYYY',
+          
+                  });
+    }); 
+
+        </script>
+    </div>
+</div>
+
+</script>
+
     <style>
 
       footer {
@@ -60,57 +90,119 @@
       }
       .row.content {height:auto;} 
     }
+
+.filterable {
+    margin-top: 15px;
+    color: #555;
+}
+
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+}
+
+.filterable .panel-heading .pull-right {
+    margin-top: -20px;
+    color: #333
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #333;
+}
+
+
+   .panel-primary>.panel-heading {
+    color: #002;
+    background-color: #333;
+    border-color: #333;
+    border-color: grey;
+    
+}
+
+
+
+
+    
   </style>
 
+
+
+<script>  
+ 'use strict';
+	var $ = jQuery;
+	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
+       
+            $('#example').DataTable( {
+                "paging":   true,
+                "ordering": true,
+                "info":     false,
+                "searching": false,
+                 "pageLength": 7,
+                 "showentitis":false,
+                 "bLengthChange": false
+                 
+            } );
+
+	});
+
+</script>
     <script>
+$(document).ready(function(){
+    $('.filterable .btn-filter').click(function(){
+        var $panel = $(this).parents('.filterable'),
+        $filters = $panel.find('.filters input'),
+        $tbody = $panel.find('.table tbody');
+        if ($filters.prop('disabled') == true) {
+            $filters.prop('disabled', false);
+            $filters.first().focus();
+        } else {
+            $filters.val('').prop('disabled', true);
+            $tbody.find('.no-result').remove();
+            $tbody.find('tr').show();
+        }
+    });
 
-        $(document).ready(function() {
-    var activeSystemClass = $('.list-group-item.active');
-
-    //something is entered in search form
-    $('#system-search').keyup( function() {
-       var that = this;
-        // affect all table rows on in systems table
-        var tableBody = $('.table-list-search tbody');
-        var tableRowsClass = $('.table-list-search tbody tr');
-        $('.search-sf').remove();
-        tableRowsClass.each( function(i, val) {
-        
-            //Lower text for case insensitive
-            var rowText = $(val).text().toLowerCase();
-            var inputText = $(that).val().toLowerCase();
-            if(inputText != '')
-            {
-                $('.search-query-sf').remove();
-                tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-                    + $(that).val()
-                    + '"</strong></td></tr>');
-            }
-            else
-            {
-                $('.search-query-sf').remove();
-            }
-
-            if( rowText.indexOf( inputText ) == -1 )
-            {
-                //hide rows
-                tableRowsClass.eq(i).hide();
-                
-            }
-            else
-            {
-                $('.search-sf').remove();
-                tableRowsClass.eq(i).show();
-            }
+    $('.filterable .filters input').keyup(function(e){
+        /* Ignore tab key */
+        var code = e.keyCode || e.which;
+        if (code == '9') return;
+        /* Useful DOM data and selectors */
+        var $input = $(this),
+        inputContent = $input.val().toLowerCase(),
+        $panel = $input.parents('.filterable'),
+        column = $panel.find('.filters th').index($input.parents('th')),
+        $table = $panel.find('.table'),
+        $rows = $table.find('tbody tr');
+        /* Dirtiest filter function ever ;) */
+        var $filteredRows = $rows.filter(function(){
+            var value = $(this).find('td').eq(column).text().toLowerCase();
+            return value.indexOf(inputContent) === -1;
         });
-        //all tr elements are hidden
-        if(tableRowsClass.children(':visible').length == 0)
-        {
-            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+        /* Clean previous no-result if exist */
+        $table.find('tbody .no-result').remove();
+        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+        $rows.show();
+        $filteredRows.hide();
+        /* Prepend no-result row if all rows are filtered */
+        if ($filteredRows.length === $rows.length) {
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
         }
     });
 });
-
 </script>
 
 
@@ -143,42 +235,218 @@
 </nav>
 
 
-<p></p>
-<p></p>
-<p></p>
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+</div>
+<hr>
+</hr>
 
-<div>
+
+<form id="contact" method="" class="form" role="form">
+<div class="row">
+<div class="col-xs-6 col-md-4 form-group">
+<label class="col-xs-6 col-md-4 form-group" for="selectbasic">From:</label>
+<select class="form-control" id="name" name="name" placeholder="Name" type="text" required autofocus />
+<option value="Ajdovščina">Ajdovščina</option>
+<option value="Bled">Bled</option>
+<option value="Bovec">Bovec</option>
+<option value="Brežice">Brežice</option>
+<option value="Celje">Celje</option>
+<option value="Cerknica">Cerknica</option>
+<option value="Domžale">Domžale</option>
+<option value="Dravograd">Dravograd</option>
+<option value="Gornja Radgona">Gornja Radgona</option>
+<option value="Gornji Grad">Gornji Grad</option>
+<option value="Grosuplje">Grosuplje</option>
+<option value="Hrastnik">Hrastnik</option>
+<option value="Idrija">Idrija</option>
+<option value="Ilirska Bistrica">Ilirska Bistrica</option>
+<option value="Izola">Izola</option>
+<option value="Jesenice">Jesenice</option>
+<option value="Kamnik">Kamnik</option>
+<option value="Kobarid">Kobarid</option>
+<option value="Koper">Koper</option>
+<option value="Kostanjevica na Krki">Kostanjevica na Krki</option>
+<option value="Kočevje">Kočevje</option>
+<option value="Kranj">Kranj</option>
+<option value="Krško">Krško</option>
+<option value="Laško">Laško</option>
+<option value="Lenart v Slovenskih goricah">Lenart v Slovenskih goricah</option>
+<option value="Lendava">Lendava</option>
+<option value="Litija">Litija</option>
+<option value="Ljubljana">Ljubljana</option>
+<option value="Ljutomer">Ljutomer</option>
+<option value="Logatec">Logatec</option>
+<option value="Maribor">Maribor</option>
+<option value="Medvode">Medvode</option>
+<option value="Mengeš">Mengeš</option>
+<option value="Metlika">Metlika</option>
+<option value="Mežica">Mežica</option>
+<option value="Murska Sobota">Murska Sobota</option>
+<option value="Nova Gorica">Nova Gorica</option>
+<option value="Novo mesto">Novo mesto</option>
+<option value="Ormož">Ormož</option>
+<option value="Piran">Piran</option>
+<option value="Postojna">Postojna</option>
+<option value="Prevalje">Prevalje</option>
+<option value="Ptuj">Ptuj</option>
+<option value="Radeče">Radeče</option>
+<option value="Radovljica">Radovljica</option>
+<option value="Ravne na Koroškem">Ravne na Koroškem</option>
+<option value="Ribnica">Ribnica</option>
+<option value="Rogaška Slatina">Rogaška Slatina</option>
+<option value="Ruše">Ruše</option>
+<option value="Sevnica">Sevnica</option>
+<option value="Sežana">Sežana</option>
+<option value="Slovenj Gradec">Slovenj Gradec</option>
+<option value="Slovenska Bistrica">Slovenska Bistrica</option>
+<option value="Slovenske Konjice">Slovenske Konjice</option>
+<option value="Tolmin">Tolmin</option>
+<option value="Trbovlje">Trbovlje</option>
+<option value="Trebnje">Trebnje</option>
+<option value="Tržič">Tržič</option>
+<option value="Turnišče">Turnišče</option>
+<option value="Velenje">Velenje</option>
+<option value="Vipava">Vipava</option>
+<option value="Vipavski Križ">Vipavski Križ</option>
+<option value="Višnja Gora">Višnja Gora</option>
+<option value="Vrhnika">Vrhnika</option>
+<option value="Zagorje ob Savi">Zagorje ob Savi</option>
+<option value="Črnomelj">Črnomelj</option>
+<option value="Šempeter pri Gorici">Šempeter pri Gorici</option>
+<option value="Šentjur">Šentjur</option>
+<option value="Škofja Loka">Škofja Loka</option>
+<option value="Šoštanj">Šoštanj</option>
+<option value="Žalec">Žalec</option>
+<option value="Železniki">Železniki</option>
+<option value="Žiri">Žiri</option>
+
+     
+    </select>
+</div>
+<div class="col-xs-6 col-md-4 form-group">
+  <label class="col-xs-6 col-md-4 form-group" for="selectbasic">To:</label>
+<select class="form-control" id="to" name="to" placeholder="to" type="text" required />
+<option value="Ajdovščina">Ajdovščina</option>
+<option value="Bled">Bled</option>
+<option value="Bovec">Bovec</option>
+<option value="Brežice">Brežice</option>
+<option value="Celje">Celje</option>
+<option value="Cerknica">Cerknica</option>
+<option value="Domžale">Domžale</option>
+<option value="Dravograd">Dravograd</option>
+<option value="Gornja Radgona">Gornja Radgona</option>
+<option value="Gornji Grad">Gornji Grad</option>
+<option value="Grosuplje">Grosuplje</option>
+<option value="Hrastnik">Hrastnik</option>
+<option value="Idrija">Idrija</option>
+<option value="Ilirska Bistrica">Ilirska Bistrica</option>
+<option value="Izola">Izola</option>
+<option value="Jesenice">Jesenice</option>
+<option value="Kamnik">Kamnik</option>
+<option value="Kobarid">Kobarid</option>
+<option value="Koper">Koper</option>
+<option value="Kostanjevica na Krki">Kostanjevica na Krki</option>
+<option value="Kočevje">Kočevje</option>
+<option value="Kranj">Kranj</option>
+<option value="Krško">Krško</option>
+<option value="Laško">Laško</option>
+<option value="Lenart v Slovenskih goricah">Lenart v Slovenskih goricah</option>
+<option value="Lendava">Lendava</option>
+<option value="Litija">Litija</option>
+<option value="Ljubljana">Ljubljana</option>
+<option value="Ljutomer">Ljutomer</option>
+<option value="Logatec">Logatec</option>
+<option value="Maribor">Maribor</option>
+<option value="Medvode">Medvode</option>
+<option value="Mengeš">Mengeš</option>
+<option value="Metlika">Metlika</option>
+<option value="Mežica">Mežica</option>
+<option value="Murska Sobota">Murska Sobota</option>
+<option value="Nova Gorica">Nova Gorica</option>
+<option value="Novo mesto">Novo mesto</option>
+<option value="Ormož">Ormož</option>
+<option value="Piran">Piran</option>
+<option value="Postojna">Postojna</option>
+<option value="Prevalje">Prevalje</option>
+<option value="Ptuj">Ptuj</option>
+<option value="Radeče">Radeče</option>
+<option value="Radovljica">Radovljica</option>
+<option value="Ravne na Koroškem">Ravne na Koroškem</option>
+<option value="Ribnica">Ribnica</option>
+<option value="Rogaška Slatina">Rogaška Slatina</option>
+<option value="Ruše">Ruše</option>
+<option value="Sevnica">Sevnica</option>
+<option value="Sežana">Sežana</option>
+<option value="Slovenj Gradec">Slovenj Gradec</option>
+<option value="Slovenska Bistrica">Slovenska Bistrica</option>
+<option value="Slovenske Konjice">Slovenske Konjice</option>
+<option value="Tolmin">Tolmin</option>
+<option value="Trbovlje">Trbovlje</option>
+<option value="Trebnje">Trebnje</option>
+<option value="Tržič">Tržič</option>
+<option value="Turnišče">Turnišče</option>
+<option value="Velenje">Velenje</option>
+<option value="Vipava">Vipava</option>
+<option value="Vipavski Križ">Vipavski Križ</option>
+<option value="Višnja Gora">Višnja Gora</option>
+<option value="Vrhnika">Vrhnika</option>
+<option value="Zagorje ob Savi">Zagorje ob Savi</option>
+<option value="Črnomelj">Črnomelj</option>
+<option value="Šempeter pri Gorici">Šempeter pri Gorici</option>
+<option value="Šentjur">Šentjur</option>
+<option value="Škofja Loka">Škofja Loka</option>
+<option value="Šoštanj">Šoštanj</option>
+<option value="Žalec">Žalec</option>
+<option value="Železniki">Železniki</option>
+<option value="Žiri">Žiri</option>
+
+     
+    </select>
+</div>
+<div class="col-xs-6 col-md-4 form-group">
+  <label class="col-xs-6 col-md-4 form-group" for="selectbasic">date</label>
+<input class="form-control" id='datetimepicker2' name="datetimepicker2" placeholder="date" type="text" required autofocus />
+  <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
 </div>
 
 
 
+
+<div class="row">
+<div class="col-xs-12 col-md-12 form-group">
+<button class="btn btn-primary pull-right" type="submit">Search</button>
+</form>
+
+
+
 <div class="container">
-	<div class="row">
-        <div class="col-md-3">
-            <form action="#" method="get">
-                <div class="input-group">
-                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
+    <hr>
+    <div class="row">
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h3 class="panel-title">U can use filter :-)</h3>
+                <div class="pull-right">
+                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
                 </div>
-            </form>
-        </div>
-		<div class="col-md-9">
-    	 <table class="table table-list-search">
-                    <thead>
-                        <tr>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>tel.num.</th>
-                            <th>contrib.</th>
-                            <th>date</th>
-                            <th>time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
+            </div>
+            <table class="table"  id="example">
+                <thead>
+                    <tr class="filters">
+                        
+                        <th><input type="text" class="form-control" placeholder="From" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="To" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Tel.Num." disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Contrib." disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Date" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Time" disabled></th>
+                    </tr>
+                </thead>
+                <tbody>
+                                   <tr>
      {% for index in messg %}
       	<td>{{index.start}}</td>
         <td>{{index.stop}}</td>
@@ -188,21 +456,30 @@
         <td>{{index.time}}</td>
      </tr>
      {% endfor %}
-                       
-   </tbody>
- </table>
- 
-
-		</div>
-	</div>
+                   
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
+<div>
+</div>
+</div>
+
+
+ 
+
 </body>
+
 
 
 <footer class="container-fluid text-center">
   <p>Let's go around</p>
 </footer>
+
+
 
 
 </html>

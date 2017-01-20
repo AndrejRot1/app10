@@ -21,6 +21,9 @@ handlers:
   script: app10.app
   login: required
 
+- url: /login
+  script: app10.app
+
 
 libraries:
 - name: webapp2
