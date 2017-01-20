@@ -98,12 +98,17 @@ class Retrive(Handler):
     def _render(self,template,**value):
         j = jinja2.get_jinja2()
         html = j.render_template(template,**value)
-        self.response.write(html) 
+        self.response.write(html)
+ 
 
     def get(self):
         messg = Prevozi.query().fetch(100)
         self._render('retrive.html',messg = messg)
 
+    def post(self):
+        mesto = self.request.get('start')
+        messg = Prevozi.query(Prevozi.start == mesto)
+        self._render('retrive.html',messg = messg)
 
 
 app = webapp2.WSGIApplication([  
