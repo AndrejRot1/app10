@@ -23,9 +23,13 @@ handlers:
 
 - url: /myposts
   script: app10.app
+  login: required
 
 
 - url: /login
+  script: app10.app
+
+- url: /Logout
   script: app10.app
 
 

@@ -4,6 +4,7 @@ import urllib
 import datetime
 from google.appengine.api import users
 from webapp2_extras import jinja2
+from jinja2 import Environment, PackageLoader
 import webapp2
 from google.appengine.ext.webapp.util import login_required
 
@@ -18,6 +19,11 @@ import webapp2
 
 
 views_dir = os.path.join(os.path.dirname(__file__), 'views')
+
+env = Environment(
+    loader=PackageLoader('app10', 'views')
+    
+)
 
 
 
@@ -48,15 +54,29 @@ class Handler(webapp2.RequestHandler):
         f.close()
 
 
+class Logout(Handler):
+    def get(self):
+        logout_url = users.create_logout_url('/')
+
+
 class Index(Handler):
 
+
+     def _render(self,template,**value):
+        template = env.get_template('index.html')
+        j = jinja2.get_jinja2()
+        html = j.render_template(template,**value)
+        self.response.write(html)
+
      def get(self):
-        self.render('index.html')
+        logout_url = users.create_logout_url('/')
+        self._render('index.html',logout_url = logout_url)
+      
 
 
 
 class Login(Handler):
-
+  
     def get(self):
         user = users.get_current_user()
         
@@ -75,12 +95,20 @@ class Login(Handler):
        
         
 class Post(Handler):
-         
-	def get(self):
-		self.render('post.html')
+
+     def _render(self,template,**value):
+        template = env.get_template('post.html')
+        j = jinja2.get_jinja2()
+        html = j.render_template(template,**value)
+        self.response.write(html)
+
+     def get(self):
+        logout_url = users.create_logout_url('/')
+        self._render('post.html',logout_url = logout_url)
+      
 
 	def post(self):
-		self.render('post.html')
+		self._render('post.html')
        
 		form_input = Prevozi(start = self.request.get('field1'),
 							 stop = self.request.get('field2'),
@@ -94,7 +122,6 @@ class Post(Handler):
 
 		form_input_key = form_input.put()
 
-       
 	
 class Retrive(Handler):
     def _render(self,template,**value):
@@ -104,8 +131,9 @@ class Retrive(Handler):
  
 
     def get(self):
+        logout_url = users.create_logout_url('/')
         messg = Prevozi.query().fetch(100)
-        self._render('retrive.html')
+        self._render('retrive.html',logout_url = logout_url)
 
     def post(self):
         mesto1 = self.request.get('start')
@@ -124,9 +152,10 @@ class Posts(Handler):
  
 
      def get(self):
-        user = users.get_current_user().user_id()
+        user =  users.get_current_user().user_id()
+        logout_url = users.create_logout_url('/')
         messg = Prevozi.query(Prevozi.user_id == user)
-        self._render('my-posts.html',messg = messg)
+        self._render('my-posts.html',messg = messg,logout_url = logout_url)
 
         
 
@@ -135,6 +164,6 @@ app = webapp2.WSGIApplication([
     ('/post',Post),
     ('/retrive',Retrive),
     ('/myposts',Posts),
-    ('/login',Login),
+    ('/Logout',Logout),
 ], debug=True)
 
