@@ -21,6 +21,10 @@ handlers:
   script: app10.app
   login: required
 
+- url: /myposts
+  script: app10.app
+
+
 - url: /login
   script: app10.app
 

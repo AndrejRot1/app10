@@ -28,7 +28,8 @@ class Author(ndb.Model):
 
 
 class Prevozi(ndb.Model):
-    email = ndb.StringProperty(indexed=False)
+    user_id = ndb.StringProperty()
+    email = ndb.StringProperty(indexed=True)
     message_time = ndb.DateTimeProperty(auto_now_add = True)
     start = ndb.StringProperty()
     stop = ndb.StringProperty()
@@ -87,7 +88,8 @@ class Post(Handler):
                              prispevek = self.request.get('field4'),
 							 date = self.request.get('field5'),
                              time = self.request.get('field6'),
-                             email = users.get_current_user().email())
+                             email = users.get_current_user().email(),
+                             user_id = users.get_current_user().user_id())
                             
 
 		form_input_key = form_input.put()
@@ -103,18 +105,36 @@ class Retrive(Handler):
 
     def get(self):
         messg = Prevozi.query().fetch(100)
-        self._render('retrive.html',messg = messg)
+        self._render('retrive.html')
 
     def post(self):
-        mesto = self.request.get('start')
-        messg = Prevozi.query(Prevozi.start == mesto)
+        mesto1 = self.request.get('start')
+        mesto2 = self.request.get('stop')
+        messg = Prevozi.query(Prevozi.start == mesto1, Prevozi.stop == mesto2)
         self._render('retrive.html',messg = messg)
 
+
+
+class Posts(Handler):
+
+     def _render(self,template,**value):
+        j = jinja2.get_jinja2()
+        html = j.render_template(template,**value)
+        self.response.write(html)
+ 
+
+     def get(self):
+        user = users.get_current_user().user_id()
+        messg = Prevozi.query(Prevozi.user_id == user)
+        self._render('my-posts.html',messg = messg)
+
+        
 
 app = webapp2.WSGIApplication([  
     ('/',Index),
     ('/post',Post),
     ('/retrive',Retrive),
+    ('/myposts',Posts),
     ('/login',Login),
 ], debug=True)
 
