@@ -3,6 +3,7 @@ import cgi
 import urllib
 import datetime
 from google.appengine.api import users
+import pkg_resources
 from webapp2_extras import jinja2
 from jinja2 import Environment, PackageLoader
 import webapp2
@@ -19,6 +20,10 @@ import webapp2
 
 
 views_dir = os.path.join(os.path.dirname(__file__), 'views')
+
+#jinja_environment = Environment(autoescape=True,
+#loader=PackageLoader(views_dir, 'views'))
+
 
 env = Environment(
     loader=PackageLoader('app10', 'views')
@@ -96,19 +101,12 @@ class Login(Handler):
         
 class Post(Handler):
 
-     def _render(self,template,**value):
-        template = env.get_template('post.html')
-        j = jinja2.get_jinja2()
-        html = j.render_template(template,**value)
-        self.response.write(html)
 
-     def get(self):
-        logout_url = users.create_logout_url('/')
-        self._render('post.html',logout_url = logout_url)
+    def get(self):
+        self.render('post.html')
       
-
-	def post(self):
-		self._render('post.html')
+    def post(self):
+		self.render('post.html')
        
 		form_input = Prevozi(start = self.request.get('field1'),
 							 stop = self.request.get('field2'),
