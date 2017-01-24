@@ -152,12 +152,14 @@
                 "info":     false,
                 "searching": false,
                  "pageLength": 7,
-                 "showentitis":false,
+                 "showentitis": false,
                  "bLengthChange": false
                  
-            } );
+            
+    });
 
-	});
+});
+
 
 </script>
     <script>
@@ -258,14 +260,19 @@ $(document).ready(function(){
              <tr>
                                        
      {% for index in messg %}
+    
       	<td>{{index.start}}</td>
         <td>{{index.stop}}</td>
         <td>{{index.telefon}}</td>  
         <td>{{index.prispevek}}</td>
          <td>{{index.date}}</td>  
         <td>{{index.time}}</td>
+         <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+    
         
      </tr>
+
+     
      {% endfor %}
                    
                    
