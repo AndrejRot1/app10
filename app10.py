@@ -139,21 +139,45 @@ class Retrive(Handler):
         messg = Prevozi.query(Prevozi.start == mesto1, Prevozi.stop == mesto2)
         self._render('retrive.html',messg = messg)
 
-
-
 class Posts(Handler):
 
      def _render(self,template,**value):
         j = jinja2.get_jinja2()
         html = j.render_template(template,**value)
         self.response.write(html)
- 
 
+ 
      def get(self):
         user =  users.get_current_user().user_id()
         logout_url = users.create_logout_url('/')
         messg = Prevozi.query(Prevozi.user_id == user)
         self._render('my-posts.html',messg = messg,logout_url = logout_url)
+
+     def post(self):
+         user =  users.get_current_user().user_id()
+         logout_url = users.create_logout_url('/')
+         field2 = self.request.get('field2')
+         field1 = self.request.get('field2')
+         messg = Prevozi.query(Prevozi.user_id == user)
+
+
+      #   prispevek = Prevozi.query(Prevozi.prispevek == '4').fetch(1)[0]
+       #  ime = prispevek.key.id()
+        # ndb.Key(Prevozi, int(ime)).delete()
+       
+       # Majhen trik kako dobiti vrednost polja
+
+         if field1 == field2:
+             ndb.Key(Prevozi, int(field2)).delete()
+            # key = ndb.key(Prevozi,int(id)).delete()
+             
+         else:
+            ime = field1
+
+         messg = Prevozi.query(Prevozi.user_id == user)
+         self._render('my-posts.html',messg = messg,logout_url = logout_url)
+
+            
 
         
 
