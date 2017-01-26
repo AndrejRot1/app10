@@ -1,0 +1,229 @@
+<html>
+<head>
+
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+
+
+<script src="js/moment-with-locales.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+
+ 
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+
+   <style>
+
+      footer {
+         position:absolute;
+         left:0;
+         bottom: 0;
+         width: 100%;
+         /* Set the fixed height of the footer here */
+         height: 40px;
+         background-color: #f5f5f5;
+      }
+
+      
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+
+.filterable {
+    margin-top: 15px;
+    color: #555;
+}
+
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+}
+
+.filterable .panel-heading .pull-right {
+    margin-top: -20px;
+    color: #333
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #333;
+}
+
+
+   .panel-primary>.panel-heading {
+    color: #002;
+    background-color: #333;
+    border-color: #333;
+    border-color: grey;
+    
+}
+
+
+
+
+    
+  </style>
+
+
+
+<script>  
+ 'use strict';
+	var $ = jQuery;
+	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
+       
+            $('#example').DataTable( {
+                "paging":   true,
+                "ordering": true,
+                "info":     false,
+                "searching": false,
+                 "pageLength": 7,
+                 "showentitis":false,
+                 "bLengthChange": false
+                 
+            } );
+
+	});
+
+</script>
+
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="post">Post</a></li>
+        <li><a href="retrive">See</a></li>
+        <li><a href="myposts">my-Posts</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{logout_url}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+</nav>
+
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+</div>
+
+
+
+<div class="conteiner">
+    <div class="row">
+        
+                </div>
+            </div>
+            <table class="display" id="example">
+                <thead>
+                   
+                        
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Tel.Num.</th>
+                        <th>Contrib.</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                   <tr>
+     {% for index in messg %}
+      	<td>{{index.start}}</td>
+        <td>{{index.stop}}</td>
+        <td>{{index.telefon}}</td>  
+        <td>{{index.prispevek}}</td>
+         <td>{{index.date}}</td>  
+        <td>{{index.time}}</td>
+        
+     </tr>
+     {% endfor %}
+                   
+                   
+                </tbody>
+            </table>
+</div>
+</body>
+
+</div>
+
+
+
+
+<footer class="container-fluid text-center">
+  <p>Let's go around</p>
+</footer>
+
+
+
+
+</html>
+

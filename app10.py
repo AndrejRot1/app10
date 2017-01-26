@@ -137,7 +137,7 @@ class Retrive(Handler):
         mesto1 = self.request.get('start')
         mesto2 = self.request.get('stop')
         messg = Prevozi.query(Prevozi.start == mesto1, Prevozi.stop == mesto2)
-        self._render('retrive.html',messg = messg)
+        self._render('look.html',messg = messg)
 
 class Posts(Handler):
 
