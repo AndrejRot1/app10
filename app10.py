@@ -103,10 +103,10 @@ class Post(Handler):
 
 
     def get(self):
-        self.render('post.html')
+        self.render('post2.html')
       
     def post(self):
-		self.render('post.html')
+		self.render('post2.html')
        
 		form_input = Prevozi(start = self.request.get('field1'),
 							 stop = self.request.get('field2'),

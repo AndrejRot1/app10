@@ -1,0 +1,300 @@
+<head>
+
+<html lang="en">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="js/moment-with-locales.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+
+
+<script type="text/javascript">
+          $(function() { 
+        $('#datetimepicker2').datetimepicker({  
+
+          format: 'DD-MM-YYYY',
+          
+                  });
+    }); 
+
+        </script>
+
+<style type="text/css">
+    
+footer {
+  position:absolute;
+  left:0;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: #f5f5f5;
+}
+
+
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+
+ </head>
+
+ <body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="post">Post</a></li>
+        <li><a href="retrive">See</a></li>
+        <li><a href="myposts">my-Posts</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{logout_url}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:400px;margin:60px auto;">
+	<form role="form" method="post">
+	   <div class="form-group">
+	      <label for="name">From city</label>
+	  <select id="field2" name="field1" class="form-control" required>
+            
+            <option value="Ajdovščina">Ajdovščina</option>
+            <option value="Bled">Bled</option>
+            <option value="Bovec">Bovec</option>
+            <option value="Brežice">Brežice</option>
+            <option value="Celje">Celje</option>
+            <option value="Cerknica">Cerknica</option>
+            <option value="Domžale">Domžale</option>
+            <option value="Dravograd">Dravograd</option>
+            <option value="Gornja Radgona">Gornja Radgona</option>
+            <option value="Gornji Grad">Gornji Grad</option>
+            <option value="Grosuplje">Grosuplje</option>
+            <option value="Hrastnik">Hrastnik</option>
+            <option value="Idrija">Idrija</option>
+            <option value="Ilirska Bistrica">Ilirska Bistrica</option>
+            <option value="Izola">Izola</option>
+            <option value="Jesenice">Jesenice</option>
+            <option value="Kamnik">Kamnik</option>
+            <option value="Kobarid">Kobarid</option>
+            <option value="Koper">Koper</option>
+            <option value="Kostanjevica na Krki">Kostanjevica na Krki</option>
+            <option value="Kočevje">Kočevje</option>
+            <option value="Kranj">Kranj</option>
+            <option value="Krško">Krško</option>
+            <option value="Laško">Laško</option>
+            <option value="Lenart v Slovenskih goricah">Lenart v Slovenskih goricah</option>
+            <option value="Lendava">Lendava</option>
+            <option value="Litija">Litija</option>
+            <option value="Ljubljana">Ljubljana</option>
+            <option value="Ljutomer">Ljutomer</option>
+            <option value="Logatec">Logatec</option>
+            <option value="Maribor">Maribor</option>
+            <option value="Medvode">Medvode</option>
+            <option value="Mengeš">Mengeš</option>
+            <option value="Metlika">Metlika</option>
+            <option value="Mežica">Mežica</option>
+            <option value="Murska Sobota">Murska Sobota</option>
+            <option value="Nova Gorica">Nova Gorica</option>
+            <option value="Novo mesto">Novo mesto</option>
+            <option value="Ormož">Ormož</option>
+            <option value="Piran">Piran</option>
+            <option value="Postojna">Postojna</option>
+            <option value="Prevalje">Prevalje</option>
+            <option value="Ptuj">Ptuj</option>
+            <option value="Radeče">Radeče</option>
+            <option value="Radovljica">Radovljica</option>
+            <option value="Ravne na Koroškem">Ravne na Koroškem</option>
+            <option value="Ribnica">Ribnica</option>
+            <option value="Rogaška Slatina">Rogaška Slatina</option>
+            <option value="Ruše">Ruše</option>
+            <option value="Sevnica">Sevnica</option>
+            <option value="Sežana">Sežana</option>
+            <option value="Slovenj Gradec">Slovenj Gradec</option>
+            <option value="Slovenska Bistrica">Slovenska Bistrica</option>
+            <option value="Slovenske Konjice">Slovenske Konjice</option>
+            <option value="Tolmin">Tolmin</option>
+            <option value="Trbovlje">Trbovlje</option>
+            <option value="Trebnje">Trebnje</option>
+            <option value="Tržič">Tržič</option>
+            <option value="Turnišče">Turnišče</option>
+            <option value="Velenje">Velenje</option>
+            <option value="Vipava">Vipava</option>
+            <option value="Vipavski Križ">Vipavski Križ</option>
+            <option value="Višnja Gora">Višnja Gora</option>
+            <option value="Vrhnika">Vrhnika</option>
+            <option value="Zagorje ob Savi">Zagorje ob Savi</option>
+            <option value="Črnomelj">Črnomelj</option>
+            <option value="Šempeter pri Gorici">Šempeter pri Gorici</option>
+            <option value="Šentjur">Šentjur</option>
+            <option value="Škofja Loka">Škofja Loka</option>
+            <option value="Šoštanj">Šoštanj</option>
+            <option value="Žalec">Žalec</option>
+            <option value="Železniki">Železniki</option>
+            <option value="Žiri">Žiri</option>
+	  </select>
+     </div>   
+     
+       
+	   <div class="form-group">
+	      <label for="address">To city</label>
+           <select id="field2" name="field2" class="form-control" required>
+                <option value="Ajdovščina">Ajdovščina</option>
+                <option value="Bled">Bled</option>
+                <option value="Bovec">Bovec</option>
+                <option value="Brežice">Brežice</option>
+                <option value="Celje">Celje</option>
+                <option value="Cerknica">Cerknica</option>
+                <option value="Domžale">Domžale</option>
+                <option value="Dravograd">Dravograd</option>
+                <option value="Gornja Radgona">Gornja Radgona</option>
+                <option value="Gornji Grad">Gornji Grad</option>
+                <option value="Grosuplje">Grosuplje</option>
+                <option value="Hrastnik">Hrastnik</option>
+                <option value="Idrija">Idrija</option>
+                <option value="Ilirska Bistrica">Ilirska Bistrica</option>
+                <option value="Izola">Izola</option>
+                <option value="Jesenice">Jesenice</option>
+                <option value="Kamnik">Kamnik</option>
+                <option value="Kobarid">Kobarid</option>
+                <option value="Koper">Koper</option>
+                <option value="Kostanjevica na Krki">Kostanjevica na Krki</option>
+                <option value="Kočevje">Kočevje</option>
+                <option value="Kranj">Kranj</option>
+                <option value="Krško">Krško</option>
+                <option value="Laško">Laško</option>
+                <option value="Lenart v Slovenskih goricah">Lenart v Slovenskih goricah</option>
+                <option value="Lendava">Lendava</option>
+                <option value="Litija">Litija</option>
+                <option value="Ljubljana">Ljubljana</option>
+                <option value="Ljutomer">Ljutomer</option>
+                <option value="Logatec">Logatec</option>
+                <option value="Maribor">Maribor</option>
+                <option value="Medvode">Medvode</option>
+                <option value="Mengeš">Mengeš</option>
+                <option value="Metlika">Metlika</option>
+                <option value="Mežica">Mežica</option>
+                <option value="Murska Sobota">Murska Sobota</option>
+                <option value="Nova Gorica">Nova Gorica</option>
+                <option value="Novo mesto">Novo mesto</option>
+                <option value="Ormož">Ormož</option>
+                <option value="Piran">Piran</option>
+                <option value="Postojna">Postojna</option>
+                <option value="Prevalje">Prevalje</option>
+                <option value="Ptuj">Ptuj</option>
+                <option value="Radeče">Radeče</option>
+                <option value="Radovljica">Radovljica</option>
+                <option value="Ravne na Koroškem">Ravne na Koroškem</option>
+                <option value="Ribnica">Ribnica</option>
+                <option value="Rogaška Slatina">Rogaška Slatina</option>
+                <option value="Ruše">Ruše</option>
+                <option value="Sevnica">Sevnica</option>
+                <option value="Sežana">Sežana</option>
+                <option value="Slovenj Gradec">Slovenj Gradec</option>
+                <option value="Slovenska Bistrica">Slovenska Bistrica</option>
+                <option value="Slovenske Konjice">Slovenske Konjice</option>
+                <option value="Tolmin">Tolmin</option>
+                <option value="Trbovlje">Trbovlje</option>
+                <option value="Trebnje">Trebnje</option>
+                <option value="Tržič">Tržič</option>
+                <option value="Turnišče">Turnišče</option>
+                <option value="Velenje">Velenje</option>
+                <option value="Vipava">Vipava</option>
+                <option value="Vipavski Križ">Vipavski Križ</option>
+                <option value="Višnja Gora">Višnja Gora</option>
+                <option value="Vrhnika">Vrhnika</option>
+                <option value="Zagorje ob Savi">Zagorje ob Savi</option>
+                <option value="Črnomelj">Črnomelj</option>
+                <option value="Šempeter pri Gorici">Šempeter pri Gorici</option>
+                <option value="Šentjur">Šentjur</option>
+                <option value="Škofja Loka">Škofja Loka</option>
+                <option value="Šoštanj">Šoštanj</option>
+                <option value="Žalec">Žalec</option>
+                <option value="Železniki">Železniki</option>
+                <option value="Žiri">Žiri</option>
+            </select>
+	   </div>
+       
+	      
+	   <div class="form-group">
+	      <label for="email">Tel.num.</label>
+	      <input type="text" name="field3" class="form-control" id="email" placeholder="Tel.num." required>
+	   </div>
+
+	   <div class="form-group">
+	      <label for="contrib">Contrib.</label>
+	      <input type="text" name="field4" class="form-control" id="contrib" placeholder="Eur" required>
+	   </div>
+
+       <div class="form-group">
+           <label for="date">Date</label>
+           <div  class='input-group date' id='datetimepicker2'>
+                <input type="text" name="field5" class="form-control" id="pwd" placeholder="10-02-1976" required>
+                 <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+           </div>
+       
+           <div class="form-group">
+	      <label for="Time">Time</label>
+	      <input type="Time" name="field6" class="form-control" id="email" placeholder="Tel.num." required>
+	   </div>
+       </div>
+
+	     <button type="submit" class="btn btn-default" onclick="Data sent">Post</button>
+	</form>
+<footer class="container-fluid text-center">
+  <p>Let's go around</p>
+</footer>
+  </body>
+
+
+
+  </html>
